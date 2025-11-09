@@ -1,0 +1,48 @@
+#version: "3.8"
+
+services:
+  frontend:
+    build: ./FrontEnd
+    container_name: frontend_container
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev"
+    environment:
+      VITE_BACKEND_URL: http://backend:8081
+
+  backend:
+    build: ./demo
+    container_name: backend_container
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cricket?useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "#barawakumbuka#"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL8Dialect
+      LOGGING_LEVEL_ORG_HIBERNATE_SQL: DEBUG
+      LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL_BASICBINDER: TRACE
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK: DEBUG
+    stdin_open: true
+    tty: true
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "#barawakumbuka#"
+      MYSQL_DATABASE: cricket
+    volumes:
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:
+
