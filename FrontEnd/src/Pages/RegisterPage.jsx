@@ -14,11 +14,12 @@ function RegisterPage(){
       const handleRegister = async(e)=>{
         e.preventDefault();
         try{
-            const newUser = await registerUser({username, password, email});
+            const newUser = await registerUser({userName: username, password, email});
             console.log("Registered user:", newUser);
             alert("Registration is done.");
             navigate('/login');
         }catch(error){
+            console.error("Registration error:", error);
             alert("Registration failed. Please try again");
         }
     };
