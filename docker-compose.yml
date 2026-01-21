@@ -1,39 +1,4 @@
-#version: "3.8"
-
 services:
-  frontend:
-    build: ./FrontEnd
-    container_name: frontend_container
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./FrontEnd:/app
-      - /app/node_modules
-    environment:
-      VITE_BACKEND_URL: http://backend:8081
-    stdin_open: true
-    tty: true
-
-  backend:
-    build: ./demo
-    container_name: backend_container
-    ports:
-      - "8081:8081"
-    depends_on:
-      - mysql
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cricket?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: "#barawakumbuka#"
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_SHOW_SQL: true
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL8Dialect
-      LOGGING_LEVEL_ORG_HIBERNATE_SQL: DEBUG
-      LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL_BASICBINDER: TRACE
-      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK: DEBUG
-    stdin_open: true
-    tty: true
-
   mysql:
     image: mysql:8
     container_name: mysql
@@ -44,6 +9,50 @@ services:
       MYSQL_DATABASE: cricket
     volumes:
       - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p#barawakumbuka#"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - devops_network
+
+  backend:
+    build:
+      context: ./demo
+      dockerfile: dockerfile
+    container_name: backend_container
+    ports:
+      - "8081:8081"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cricket?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "#barawakumbuka#"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL8Dialect
+    networks:
+      - devops_network
+
+  frontend:
+    build: ./FrontEnd
+    container_name: frontend_container
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_BACKEND_URL: http://localhost:8081
+    depends_on:
+      - backend
+    networks:
+      - devops_network
+
+networks:
+  devops_network:
+    driver: bridge
+
 volumes:
   mysql-data:
-

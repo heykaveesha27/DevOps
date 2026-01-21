@@ -1,0 +1,127 @@
+.MatchSelector{
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    box-shadow: 1px solid 1px rgba(0, 0, 0, 0.1);
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0px 1px 0px lightblue;
+    border:1px solid rgba(0,0,0,.2);
+    position: absolute;
+    top: 10px;
+    right:10px;
+    transition: 0.3s ease;
+    font-size: 1rem;
+}
+
+.parent{
+    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MatchSelector1{
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    box-shadow: 1px solid 1px rgba(0, 0, 0, 0.1);
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0px 1px 0px lightblue;
+    border:1px solid rgba(0,0,0,.2);
+    
+    margin: auto;
+    
+    transition: 0.3s ease;
+    font-size: 1rem;
+}
+
+.MatchSelector1 div input{
+    background: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+
+.MatchSelector .inputwrap{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    border-radius: 5px;
+    height: 30px;
+   background-color: #eee;
+    
+   width: 245px;
+}
+
+.MatchSelector1 .inputwrap{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    border-radius: 5px;
+    height: 45px;
+    background-color: #eee;
+    
+   width: 330px;
+}
+
+.MatchSelector1 .buttonrow{
+    margin-top: 15px;
+}
+
+.MatchSelector1 .inputwrap:focus-within{
+    scale: 1.01;
+     box-shadow: 0 0 0.5rem rgba(5, 1, 198, 0.5);
+}
+
+ .inputwrap button{
+    height: 30px;
+    border:none;
+    outline: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-right: 10px;
+    font-size: 25px;
+}
+
+.inputwrap button:hover{
+    background-color:#28a2e2ff;
+    color: white;
+}
+
+.buttonrow{
+    display: flex;
+    gap: 10px;
+}
+
+.buttonrow button{
+    border:none;
+    outline: none;
+    height: 30px;
+    width: 75px;
+    border-radius: 5px;
+}
+
+.buttonrow button:hover{
+    background-color: lightblue;
+}
+

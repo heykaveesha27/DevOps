@@ -1,0 +1,9 @@
+# Stop current container (Ctrl+C if running in interactive mode)
+
+# Rebuild the image
+docker build -t try-app .
+
+# Run with the updated configuration
+docker run -it -p 5173:5173 try-app
+
+devops-backend:latest

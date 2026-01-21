@@ -1,0 +1,463 @@
+.wrapper{
+    position:relative;
+    width:500px;
+    height:440px;
+    background:transparent;
+    border:2px solid rgba(255,255,255,0.5);
+    border-radius:20px;
+    backdrop-filter: blur(20px);
+    box-shadow:0 0 30px (0,0,0,0.5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+   transform: scale(0);
+  overflow:hidden;
+  transition: transform 0.4s ease,height 0.2s ease;
+    
+}
+
+.wrapper.active-popup{
+    transform: scale(1);
+}
+
+.wrapper.active{
+    height:520px;
+    
+}
+
+.wrapper .form-box{
+    width:100%;
+    padding:40px;
+  
+}
+
+.wrapper .form-box.login{
+    transition:transform .2s ease;
+}
+
+.wrapper.active .form-box.login{
+transition: none;
+transform:translateX(-400px);
+
+}
+
+.wrapper .form-box.register{
+   position:absolute;
+   transform:translateX(400px);
+}
+
+.wrapper.active .form-box.register{
+    transition: transform .2s ease;
+    transform:translateX(0);
+}
+
+.wrapper .icon-close{
+    position:absolute;
+    top:0;
+    right:0;
+    width:45px;
+    height:45px;
+    background:#162938;
+    font-size:2em;
+    color:black;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor:pointer;
+    z-index:1;
+    transition: 0.4s;
+}
+
+.wrapper .icon-close:hover{
+    background:red;
+}
+
+
+.form-box h2{
+    font-size:2em;
+    color:black;
+    text-align:center;
+}
+
+.input-box{
+    position:relative;
+    width:100%;
+    height:50px;
+    border-bottom:2px solid black;
+    margin:20px 0;
+    text-align:5px;
+}
+
+
+.input-box label{
+    position:absolute;
+    top:50%;
+    left: 5px;
+    transform:translateY(-50%);
+    color:black;
+    font-size:1em;
+    font-weight: 500;
+    pointer-events: none;
+    display: block;
+   transition:0.4s;
+}
+.input-box input:focus~label,
+.input-box input:valid~label{
+   top:-5px;
+}
+
+.input-box input{
+    width:100%;
+    height:100%;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:black;
+    padding:0 35px 0 5px;
+
+}
+
+.input-box .icon{
+    position:absolute;
+    right:8px;
+    font-size:1.2em;
+    color:black;
+    line-height:57px;
+}
+
+.remember-forget{
+    font-size:0.9em;
+    color:black;
+    font-weight:500;
+    margin:15px 0 15px;
+    display:flex;
+    justify-content:space-between;
+    
+
+}
+
+.remember-forget label input{
+    accent-color: #162938;
+    margin-right:3px;
+}
+
+.remember-forget a {
+    color:black;
+    text-decoration: none;
+}
+
+.remember-forget a:hover{
+    text-decoration:underline;
+}
+
+.btn{
+    width:100%;
+    height:45px;
+    background:#162938;
+    border:none;
+    outline:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:1em;
+    color:white;
+    font-weight:500;
+}
+
+.login-register{
+    font-size:0.9em;
+    color:black;
+    text-align:center;
+    font-weight:500;
+    margin:25px 0 10px;
+
+}
+
+.login-register p a{
+    text-decoration:none;;
+    font-weight:600;;
+    color:black;
+}
+
+.login-register p a:hover{
+    text-decoration:underline;
+}
+
+.batting .quote h1{
+        text-shadow: 0px 2px 10px #424242;
+    }
+
+.battingcard{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+   
+}
+
+.battingcard form{
+    width:60%;
+    border-radius: .5rem;
+    box-shadow:var(--box-shadow);
+    border:1px solid rgba(0,0,0,.2);
+    background: #fff;
+    padding:.5rem;
+    margin:0 auto;
+    
+}
+
+.correct{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #28a2e2ff;
+    border: none;
+    outline: none;
+    transition: 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+
+.correct:hover{
+    box-shadow: 0 2px 2px rgba(0,0,0,.2);
+    scale: 1.01;
+}
+
+.battingcard form .inputBox{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+
+.battingcard form .inputBox .input{
+    width:100%;
+    padding-right:20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #eee;
+    border-radius: 0.5rem;
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+}
+
+.battingcard form .inputBox .input span{
+    display:block;
+    padding:0.5rem 0;
+    font-size:1.5rem;
+    color:var(--light-color);
+}
+
+.battingcard form .inputBox .input input,
+.battingcard form .inputBox .input textarea{
+    background: transparent;
+    
+    padding: 10px;
+    font-size:16px;
+    color:var(--black);
+    text-transform: none;
+    margin-bottom:5px;
+    width: 100%;
+    border: none;
+
+}
+
+.battingcard form .inputBox .input input:focus,
+.battingcard form .inputBox .input textarea:focus{
+
+
+
+ outline: none;
+
+ 
+}
+
+.battingcard form .inputBox .input textarea{
+    height:20rem;
+    resize:none;
+}
+
+.battingcard form .btn{
+    margin-top: 0;
+}
+
+.inptbtn,
+.inptbtn1{
+    border: none;
+    outline: none;
+    width: 45px;
+    background:transparent;
+    margin-right: 0px;
+    color: lightgray;
+    font-weight: bolder;
+}
+
+
+.inptbtn:hover,
+.inptbtn1:hover
+{
+    color: black;
+
+}
+
+input::placeholder,
+input::placeholder{
+    font-style: italic;
+    font-variant:small-caps;
+}
+
+.battingcard .input:focus-within{
+    scale: 1.01;
+     box-shadow: 0 0 0.5rem rgba(5, 1, 198, 0.5);
+}
+
+.teamname{
+    background-color: transparent;
+    font-size: large;
+    border: none;
+    outline: none;
+    color:white;
+    text-align: center;
+    transition-duration: 0.5s;
+}
+
+.quote1 input::placeholder{
+    color:rgba(255,255,255,0.5);
+    text-align: center;
+}
+
+.quote1 input:focus{
+
+border-bottom: 2px solid rgba(255,255,255,0.5);
+transition: ease-in-out;
+}
+
+.logout{
+
+    width: 100%;
+
+    
+}
+
+.logout button{
+    background: none;
+    font-size: 20px;
+    border: none;
+    outline:none;
+    color:white;
+    margin:10px ;
+    text-decoration: underline;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease;
+    font-weight: bold;
+}
+
+.logout button:hover{
+    background-color: white;
+    color: #162938;
+    box-shadow: 0px 3px 2px rgba(255,255,255,0.3);
+}
+
+.quote1{
+    background:linear-gradient(to bottom, #28a2e2ff, #226085ff);
+    width: 50%;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:white;
+}
+
+.upper{
+    background: linear-gradient(to right,#28a2e2ff, #226085ff);
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 50px;
+}
+
+.upper nav button{
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    background: none;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.upper nav button:hover{
+    scale: 1.01;
+    background-color: white;
+    color: #162938;
+    box-shadow: 0 2px 2px rgba(255,255,255,.2);
+}
+
+
+.MatchSelector{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px solid 1px rgba(0, 0, 0, 0.1);
+    height: auto;
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0px 1px 0px lightblue;
+    border: 1px solid lightblue;
+     z-index: 1000;
+     position: relative;
+    
+}
+
+.MatchSelector input{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #eee;
+    border: none;
+    outline: none;
+    padding-left: 8px;
+    padding-right: 8px;
+   width: 230px;
+  
+}
+
+.buttonrow{
+    display: flex;
+    gap: 10px;
+}
+
+.buttonrow button{
+    border:none;
+    outline: none;
+    height: 30px;
+    width: 75px;
+    border-radius: 5px;
+}
+
+.buttonrow button:hover{
+    background-color: lightblue;
+}
+
