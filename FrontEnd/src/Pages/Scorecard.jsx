@@ -1,13 +1,12 @@
 import React,{use, useState,useEffect} from "react";
-import ScoreBar from './ScoreCard/ScoreBar.jsx';
-import Statbar from "./ScoreCard/Statbar.jsx";
-import Batters from "./ScoreCard/Batters.jsx"
-import Bowlers from "./ScoreCard/Bowlers.jsx"
-import Actions from "./ScoreCard/Actions.jsx"
-import Partnership from "./ScoreCard/Partnership.jsx";
-import Navbar from "./navbar.jsx";
-import MatchSelector from "./MatchSelector.jsx";
-import NewBowler from "./NewBowler.jsx";
+import ScoreBar from "../ScoreCard/ScoreBar.jsx";
+import Statbar from "../ScoreCard/Statbar.jsx";
+import Batters from "../ScoreCard/Batters.jsx"
+import Bowlers from "../ScoreCard/Bowlers.jsx"
+import Actions from "../ScoreCard/Actions.jsx"
+import Partnership from "../ScoreCard/Partnership.jsx";
+
+
 import './ScoreCard.css'
 function Scorecard(){
 const [showComponent,setShowComponent]=useState(false);
@@ -152,8 +151,8 @@ useEffect(() => {
     }
     return (
         <div className="scorecard">
-            <Navbar onToggleComponent={()=>setShowComponent(prev=>!prev)}/>
-               {showComponent &&<div className="" style={{position:"relative",zIndex:"9999"}}><MatchSelector/></div>}
+         
+               {showComponent &&<div className="" style={{position:"relative",zIndex:"9999"}}></div>}
             <ScoreBar 
             position={position}
             lakunu={lakunu}

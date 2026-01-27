@@ -8,7 +8,7 @@ import RegisterPage from './Pages/RegisterPage'
 import Dashboard from './Pages/Dashboard'
 import Batting from './Pages/Batting'
 import Bowling from './Pages/Bowling'
-import Scoreboard from './Pages/Scoreboard'
+import Scorecard from './Pages/Scorecard'
 function App() {
   
 
@@ -21,7 +21,7 @@ function App() {
       <Route path='/dashboard' element={<Dashboard/>}></Route>
       <Route path='/batting' element={<Batting/>}></Route>
       <Route path='/bowling' element={<Bowling/>}></Route>
-      <Route path='/scoreboard' element={<Scoreboard/>}></Route>
+      <Route path='/scorecard' element={<Scorecard/>}></Route>
      </Routes>
      </BrowserRouter>
     </div>

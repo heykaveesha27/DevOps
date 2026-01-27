@@ -1,0 +1,97 @@
+environment {
+    DOCKER_REGISTRY = 'heykaveesha27'
+    BACKEND_IMAGE = 'springboot-backend'
+    FRONTEND_IMAGE = 'react-frontend'
+    BUILD_TAG = 'newer'
+}
+
+stages {
+    stage('Checkout') {
+        steps {
+            git branch: 'main', url: 'https://github.com/heykaveesha27/DevOps.git'
+        }
+    }
+    
+    stage('Build Images') {
+        steps {
+            sh 'docker compose build'
+        }
+    }
+    
+    stage('Tag Images') {
+        steps {
+            sh "docker tag devops-backend ${DOCKER_REGISTRY}/${BACKEND_IMAGE}:${BUILD_TAG}"
+            sh "docker tag devops-backend ${DOCKER_REGISTRY}/${BACKEND_IMAGE}:latest"
+            sh "docker tag devops-frontend ${DOCKER_REGISTRY}/${FRONTEND_IMAGE}:${BUILD_TAG}"
+            sh "docker tag devops-frontend ${DOCKER_REGISTRY}/${FRONTEND_IMAGE}:latest"
+        }
+    }
+    
+    stage('Push to Docker Hub') {
+        steps {
+            script {
+                withCredentials([usernamePassword(
+                    credentialsId: 'docker-hub-credentials',
+                    usernameVariable: 'heykaveesha27',
+                    passwordVariable: '#barawakumbuka#'
+                )]) {
+                    sh '''
+                        echo "#barawakumbuka#" | docker login -u "heykaveesha27" --password-stdin
+                        docker push ${DOCKER_REGISTRY}/${BACKEND_IMAGE}:${BUILD_TAG}
+                        docker push ${DOCKER_REGISTRY}/${BACKEND_IMAGE}:latest
+                        docker push ${DOCKER_REGISTRY}/${FRONTEND_IMAGE}:${BUILD_TAG}
+                        docker push ${DOCKER_REGISTRY}/${FRONTEND_IMAGE}:latest
+                        docker logout
+                    '''
+                }
+            }
+        }
+    }
+    
+    stage('Clean Old Containers') {
+        steps {
+            sh '''
+                echo "Removing old containers..."
+                docker rm -f mysql || true
+                docker rm -f backend_container || true
+                docker rm -f frontend_container || true
+                docker rm -f magical_mcnulty || true
+                docker rm -f brave_boyd || true
+                docker rm -f gallant_varahamihira || true
+                docker rm -f heuristic_wing || true
+                docker rm -f interesting_liskov || true
+                
+                echo "Removing old networks..."
+                docker network prune -f || true
+            '''
+        }
+    }
+    
+    
+    stage('Deploy') {
+        steps {
+            sh 'docker compose down || true'
+            sh 'docker compose up -d'
+        }
+    }
+    
+    stage('Verify') {
+        steps {
+            sh 'sleep 15'
+            sh 'docker compose ps'
+        }
+    }
+}
+
+post {
+    success {
+        echo '✅ Pipeline succeeded!'
+    }
+    failure {
+        echo '❌ Pipeline failed!'
+        sh 'docker compose logs || true'
+    }
+    always {
+        sh 'docker ps -a || true'
+    }
+}

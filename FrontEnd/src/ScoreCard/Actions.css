@@ -1,0 +1,68 @@
+*{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.actions{
+        
+        flex-grow: 0.3;
+        height: 100%;
+        padding-left: 20px;
+        padding-right:20px ;
+        
+      
+}
+
+.actions p{
+        color: white;
+        font-size: 24px;
+        margin-top: 5px;
+}
+
+.actions .buttonstack button{
+        width: 70px;
+        height: 70px;
+        border-radius: 35px;
+        box-shadow:0 3px 0 rgba(0, 0, 0, 0.2);
+        background-color: transparent;
+        border: 2px solid white;
+        font-size: 24px;
+        font-weight: lighter;
+        transition: 0.5s ease;
+        color: white;
+       
+}
+
+.actions .buttonstack button:hover{
+        scale: 1.03;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.buttonstack{
+        
+        display:grid;
+        grid-template-columns: repeat(5, 1fr);
+        width: fit-content;
+        gap: 15px;
+        justify-content:space-between;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+}
+
+@media (max-width:1280px){
+       .buttonstack{
+        gap: 10px;
+        grid-template-columns: repeat(5,1fr);
+       }
+        .actions button{
+        width: 60px;
+        height: 60px;
+        border-radius: 35px;
+        box-shadow:0 3px 0 rgba(0, 0, 0, 0.1);
+        background-color: transparent;
+        border: 2px solid white;
+        font-size: 18px;
+        font-weight: lighter;
+}
+}
