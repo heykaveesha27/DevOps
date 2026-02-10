@@ -1,0 +1,28 @@
+.page{
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(208, 0, 255, 0.1),white);
+}
+
+.window{
+  background-color: white;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 550px;
+}
+
+.list{
+    max-height: 90%;
+    overflow-y:auto;
+    border: none;
+    padding: 8px;
+    width: 90%;
+}

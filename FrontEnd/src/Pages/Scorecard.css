@@ -62,7 +62,7 @@ outline: none;
 .left{
     flex-grow: 5;
     height:100%;
-    background:linear-gradient(to bottom, white, #eee);
+    background:white;
     
     
 }

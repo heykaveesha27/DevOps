@@ -1,7 +1,7 @@
 # Stage 1: Build with JDK 21
 FROM eclipse-temurin:21-jdk-alpine AS builder
 WORKDIR /build
-
+#run with 21 in local
 # Copy Maven files
 COPY mvnw .
 COPY .mvn .mvn
