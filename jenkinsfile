@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_REGISTRY = 'heykaveesha27'
+        BACKEND_IMAGE = 'springboot-backend'
+        FRONTEND_IMAGE = 'react-frontend'
+        BUILD_TAG = "latest"
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/heykaveesha27/DevOps.git'
+            }
+        }
+        
+        stage('Build Backend Image') {
+            steps {
+                dir('demo') {
+                    sh "docker build -t ${BACKEND_IMAGE}:${BUILD_TAG} -f dockerfile ."
+                    sh "docker tag ${BACKEND_IMAGE}:${BUILD_TAG} ${BACKEND_IMAGE}:latest"
+                }
+            }
+        }
+        
+        stage('Build Frontend Image') {
+            steps {
+                dir('FrontEnd') {
+                    sh "docker build -t ${FRONTEND_IMAGE}:${BUILD_TAG} -f dockerfile ."
+                    sh "docker tag ${FRONTEND_IMAGE}:${BUILD_TAG} ${FRONTEND_IMAGE}:latest"
+                }
+            }
+        }
+        
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
+                                                      usernameVariable: 'heykaveesha27', 
+                                                      passwordVariable: '#barawakumbuka#')]) {
+                        sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
+                        
+                        // Push Backend
+                        sh "docker push ${DOCKER_REGISTRY}/${BACKEND_IMAGE}:${BUILD_TAG}"
+                        sh "docker push ${DOCKER_REGISTRY}/${BACKEND_IMAGE}:latest"
+                        
+                        // Push Frontend
+                        sh "docker push ${DOCKER_REGISTRY}/${FRONTEND_IMAGE}:${BUILD_TAG}"
+                        sh "docker push ${DOCKER_REGISTRY}/${FRONTEND_IMAGE}:latest"
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy with Docker Compose') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker-compose up -d --build'
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Both images built and deployed successfully!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+        always {
+            sh 'docker-compose logs'
+        }
+    }
+}
