@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-
-const API_BASE_URL = "http://localhost:8081/api/auth";
+//const API_BASE_URL = "http://localhost:8081/api/auth";
+const API_BASE_URL = "http://15.134.222.250:8081/api/auth";
 
 //function to register a new user
 export const registerUser = async(user)=>{

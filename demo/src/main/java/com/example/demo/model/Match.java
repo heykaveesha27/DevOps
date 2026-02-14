@@ -12,7 +12,6 @@ public class Match {
     @Id @GeneratedValue
     private Long id;
 
-
     @ManyToOne
     private User createBy;
 

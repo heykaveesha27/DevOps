@@ -1,5 +1,5 @@
 # Stage 1: Build with JDK 21
-FROM eclipse-temurin:21-jdk-alpine AS builder -- for local
+FROM eclipse-temurin:21-jdk-alpine AS builder
 #FROM openjdk:21.0.10-jdk AS builder
 WORKDIR /build
 #run with 21 in local
@@ -19,7 +19,7 @@ COPY src src
 RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Runtime with JRE 21
-FROM eclipse-temurin:21-jre-alpine <- for local
+FROM eclipse-temurin:21-jre-alpine
 #FROM openjdk:21.0.10-jre
 WORKDIR /app
 
