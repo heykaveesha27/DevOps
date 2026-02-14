@@ -15,7 +15,7 @@ pipeline {
             }
         }
         
-        stage('Build Backend Image') {
+        stage('Build Backend Image') {j
             steps {
                 dir('demo') {
                     sh "docker build -t ${BACKEND_IMAGE}:${BUILD_TAG} -f dockerfile ."
