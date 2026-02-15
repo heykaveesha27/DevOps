@@ -1,5 +1,24 @@
 services:
 
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "#barawakumbuka#"
+      MYSQL_DATABASE: cricket
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p#barawakumbuka#"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - devops_network
+
   backend:
     build:
       context: ./demo
@@ -7,11 +26,14 @@ services:
     container_name: backend_container
     ports:
       - "8081:8081"
+    depends_on:
+      mysql:
+        condition: service_healthy
     environment:
       #SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cricket?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_URL: jdbc:mysql://sql12.freesqldatabase.com:3306/sql12816675
-      SPRING_DATASOURCE_USERNAME: sql12816675
-      SPRING_DATASOURCE_PASSWORD: "DyU8H1L6hw"
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "#barawakumbuka#"
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL8Dialect
@@ -24,7 +46,7 @@ services:
     ports:
       - "5173:5173"
     environment:
-      VITE_BACKEND_URL: http://15.134.222.250:8081
+      VITE_BACKEND_URL: http://localhost:8081
       
     depends_on:
       - backend
@@ -35,4 +57,5 @@ networks:
   devops_network:
     driver: bridge
 
-
+volumes:
+  mysql-data:
