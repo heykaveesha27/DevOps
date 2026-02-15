@@ -5,9 +5,8 @@ import Batters from "../ScoreCard/Batters.jsx"
 import Bowlers from "../ScoreCard/Bowlers.jsx"
 import Actions from "../ScoreCard/Actions.jsx"
 import Partnership from "../ScoreCard/Partnership.jsx";
+import './Scorecard.css'
 
-
-import './ScoreCard.css'
 function Scorecard(){
 const [showComponent,setShowComponent]=useState(false);
 const [activeTab,setActiveTab]=useState("Batters");
