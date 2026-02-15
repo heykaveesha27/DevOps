@@ -20,7 +20,7 @@ pipeline {
         stage('Build Frontend Image') {
             steps {
                 dir('FrontEnd') {
-                    sh "docker build -t ${FRONTEND_IMAGE}:${BUILD_TAG} -f dockerfile ."
+                    sh "docker build -t ${FRONTEND_IMAGE}:${BUILD_TAG} -f Dockerfile ."
                     sh "docker tag ${FRONTEND_IMAGE}:${BUILD_TAG} ${FRONTEND_IMAGE}:latest"
                 }
             }
