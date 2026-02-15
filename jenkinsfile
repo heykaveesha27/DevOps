@@ -15,14 +15,7 @@ pipeline {
             }
         }
         
-        stage('Build Backend Image') {
-            steps {
-                dir('demo') {
-                    sh "docker build -t ${BACKEND_IMAGE}:${BUILD_TAG} -f dockerfile ."
-                    sh "docker tag ${BACKEND_IMAGE}:${BUILD_TAG} ${BACKEND_IMAGE}:latest"
-                }
-            }
-        }
+        
         
         stage('Build Frontend Image') {
             steps {
@@ -32,7 +25,16 @@ pipeline {
                 }
             }
         }
-        
+
+        stage('Build Backend Image') {
+            steps {
+                dir('demo') {
+                    sh "docker build -t ${BACKEND_IMAGE}:${BUILD_TAG} -f dockerfile ."
+                    sh "docker tag ${BACKEND_IMAGE}:${BUILD_TAG} ${BACKEND_IMAGE}:latest"
+                }
+            }
+        }
+
         stage('Push to Docker Hub') {
             steps {
                 script {
