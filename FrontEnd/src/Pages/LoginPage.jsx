@@ -27,7 +27,7 @@ return(
     <div className="LoginPage">
         <div className="login">
             <form onSubmit={handleLogin} >
-               <h1 style={{textAlign:"center",marginTop:"0px"}}>Login</h1>
+               <h1 style={{textAlign:"center",marginTop:"0px"}}>Theekshana A.P.K.</h1>
           
               <div className="inputwrap">
               <FaEnvelope style={{marginTop:"25px"}}/><input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Enter your username" required/>
