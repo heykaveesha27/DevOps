@@ -16,9 +16,8 @@ const [striker,setStriker]=useState(0);
     
 const [wickets, setWickets]=useState(()=>Number(localStorage.getItem("wickets"))||0);
 const [lakunu,setLakunu] = useState(()=>Number(localStorage.getItem("lakunu"))||0);
-const [position,setPostition]=useState(0);
- const [firstBatter,setFirstBatter]=useState(0);
-    const [secondBatter,setSecondBatter]=useState(1);
+const [firstBatter,setFirstBatter]=useState(0);
+const [secondBatter,setSecondBatter]=useState(1);
 
 useEffect(() => {
   localStorage.setItem("wickets", wickets);
