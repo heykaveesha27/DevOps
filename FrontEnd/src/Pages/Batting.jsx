@@ -66,7 +66,7 @@ const handleSubmit = async (e) => {
     const team = playerName.map(name => ({playerName: name }));
 
       try {
-        await axios.post("http://localhost:8080/api/battingteam/batch", team, {
+        await axios.post("http://15.134.222.250:8081/api/battingteam/batch", team, {
           headers: { "Content-Type": "application/json"}
         });
         alert("Batting team saved!");

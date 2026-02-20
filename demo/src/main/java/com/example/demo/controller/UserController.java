@@ -14,7 +14,7 @@ import com.example.demo.service.UserService;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://15.134.222.250:5173")
 public class UserController {
     @Autowired
     private UserService userService;

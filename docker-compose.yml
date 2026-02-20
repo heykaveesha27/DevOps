@@ -9,9 +9,9 @@ services:
       - "8081:8081"
     environment:
       #SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cricket?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      SPRING_DATASOURCE_URL: jdbc:mysql://sql12.freesqldatabase.com:3306/sql12816675
-      SPRING_DATASOURCE_USERNAME: sql12816675
-      SPRING_DATASOURCE_PASSWORD: "DyU8H1L6hw"
+      SPRING_DATASOURCE_URL: jdbc:mysql://sql12.freesqldatabase.com:3306/sql12817561
+      SPRING_DATASOURCE_USERNAME: sql12817561
+      SPRING_DATASOURCE_PASSWORD: "kZjUqKGpmR"
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL8Dialect

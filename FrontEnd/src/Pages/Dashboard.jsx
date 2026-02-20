@@ -43,7 +43,7 @@ function MatchSelector1() {
         };
 
         try {
-            await axios.post("http://localhost:8080/api/matches", matchData);
+            await axios.post("http://15.134.222.250:8081/api/matches", matchData);
             alert("Match Initiated Successfully");
             navigate('/batting',{state:{battingteam}});
             localStorage.setItem("bowlingteam",JSON.stringify(bowlingteam));

@@ -64,7 +64,7 @@ const handleSubmit = async (e) => {
     const team = playerName.map(name => ({playerName: name }));
 
       try {
-        await axios.post("http://localhost:8080/api/bowlingteam/batch", team, {
+        await axios.post("http://15.134.222.250:8081/api/bowlingteam/batch", team, {
           headers: { "Content-Type": "application/json"}
         });
         localStorage.setItem("firstbowl",JSON.stringify(team))
